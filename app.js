@@ -1,13 +1,29 @@
-const http = require('http')
+const http = require('http');
+const people = require('./people');
 
-const server = http.createServer((req,res)=>{
+http.createServer((req,res)=>{
+    //console.log(req.method);
     if(req.url === '/'){
-        res.end('Welcome to our Home Page');
+        res.writeHead(200, {'content-type': 'text/html'})
+        res.write(homePage);
     }
-    if(req.url === '/about'){
-        res.end('This is a short summary of our website');
+    else if(req.url === '/about'){
+        res.end("This is the abouts page");
     }
+    else if(req.url === '/sample.css'){
+        res.writeHead(200, {'content-type':'text/css'});
+        res.write(homeStyles);
+    }
+    else if(req.url === '/sample.js'){
+        res.writeHead(200, {'content-type':'text/javascript'});
+        res.write(homeLogic);
+    }
+    else{
+        res.writeHead(404, {'content-type':'text/html'});
+        res.write('<h1>THE REQUESTED RESOURCE DOES NOT EXIST</h1>');
+    }
+    res.end();
+}).listen(3000, (port=3000)=>{
+    console.log(`Listening on port ${port}`)
 })
 
-server.listen(3000);
-console.log("Listening to port 3000...Please go to localhost:3000 on your browser...");

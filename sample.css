@@ -1,0 +1,19 @@
+body{
+    font-family: Arial;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#goAbout{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.315);
+    background-color: rgb(211, 209, 209);
+}
+#goAbout:hover{
+    background-color: rgb(175, 175, 175);
+}
