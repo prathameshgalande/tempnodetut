@@ -1,29 +1,33 @@
-const http = require('http');
-const people = require('./people');
+const express = require('express');
+const path = require('path');
+let {people} = require('./people');
+const app = express();
 
-http.createServer((req,res)=>{
-    //console.log(req.method);
-    if(req.url === '/'){
-        res.writeHead(200, {'content-type': 'text/html'})
-        res.write(homePage);
-    }
-    else if(req.url === '/about'){
-        res.end("This is the abouts page");
-    }
-    else if(req.url === '/sample.css'){
-        res.writeHead(200, {'content-type':'text/css'});
-        res.write(homeStyles);
-    }
-    else if(req.url === '/sample.js'){
-        res.writeHead(200, {'content-type':'text/javascript'});
-        res.write(homeLogic);
+app.use(express.static('./public'));
+app.use(express.urlencoded({extended:false}))
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'sample.html'));
+});
+
+app.get('/api/people',(req,res)=>{
+    res.status(200).json({success:true, data:people});
+} )
+
+app.post('/submit', (req,res)=>{
+    console.log(req.body);
+    const {personname, personpwd} = req.body;
+    if(personname !== '' && personpwd !== ''){
+        if(personname.toLowerCase() === 'john' && personpwd === '1234'){
+            res.status(200).send(`Welcome ${personname}`);
+        }
+        else{
+            res.status(401).send('Incorrect username or password');
+        }
     }
     else{
-        res.writeHead(404, {'content-type':'text/html'});
-        res.write('<h1>THE REQUESTED RESOURCE DOES NOT EXIST</h1>');
+        res.send('Username/Password cannot be empty');
     }
-    res.end();
-}).listen(3000, (port=3000)=>{
-    console.log(`Listening on port ${port}`)
 })
 
+app.listen(3000, ()=>console.log('Listening on port 3000'));

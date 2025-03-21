@@ -15,6 +15,23 @@ app.get('/api/city', (req,res)=>{
     res.json(filtered);
 })
 
+app.get('/api/v1/query', (req,res)=>{
+    const {search} = req.query;
+    const individuals = [...people];
+    if(search){
+        const person = individuals.filter(person=>person.city === search);
+        if(person.length > 0){
+            res.status(200).json(person);
+        }
+        else{
+            res.status(404).send("No match found for your search");
+        }
+    }
+    else{
+        res.status(200).json(individuals);
+    }
+})
+
 app.get('/api/:personID', (req,res)=>{
     const {personID} = req.params;
     const individual = people.find(person=> person.id === Number(personID));

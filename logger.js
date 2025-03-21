@@ -1,10 +1,10 @@
-const EventEmitter = require('events');
+const logger = ((req, res, next)=>{
+    const method = req.method;
+    const url = req.url;
+    const now = new Date().getFullYear();
 
-class Logger extends EventEmitter{
-    log(message){
-        console.log(message);
-        this.emit('messageLogged', message);
-    }
-}
+    console.log(method,url,now);
+    next();
+})
 
-module.exports = Logger;
+module.exports = logger;
