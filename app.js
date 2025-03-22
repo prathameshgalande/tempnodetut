@@ -14,10 +14,10 @@ app.get('/api/people',(req,res)=>{
     res.status(200).json({success:true, data:people});
 } )
 
-app.post('/submit', (req,res)=>{
-    console.log(req.body);
+app.post('/handleIt', (req,res)=>{
+    //console.log(req.body);
     const {personname, personpwd} = req.body;
-    if(personname !== '' && personpwd !== ''){
+    if(personname && personpwd){
         if(personname.toLowerCase() === 'john' && personpwd === '1234'){
             res.status(200).send(`Welcome ${personname}`);
         }
@@ -27,6 +27,16 @@ app.post('/submit', (req,res)=>{
     }
     else{
         res.send('Username/Password cannot be empty');
+    }
+})
+
+app.post('/takeAction', (req,res)=>{
+    console.log(req.body);
+    if(req.body){
+        res.json({success:true});
+    }
+    else{
+        res.json({success:false});
     }
 })
 

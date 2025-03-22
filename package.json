@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21",
-    "morgan": "^1.10.0"
+    "lodash": "^4.17.21"
   }
 }
