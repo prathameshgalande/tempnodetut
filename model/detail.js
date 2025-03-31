@@ -110,11 +110,11 @@ const activitySchema = new mongoose.Schema({
     } 
 });
 
-const personalInfo = mongoose.model('Personal_info', personalInfoSchema);
+const personalInfoDb = mongoose.model('Personal_info', personalInfoSchema);
 const educationInfo = mongoose.model('Education_info', edInfoSchema);
 const expInfo = mongoose.model('Experience_info', expSchema);
-const projInfo = mongoose.model('Experience_info', projectSchema)
-const techSkillInfo = mongoose.model('Experience_info', techSkillSchema)
-const activityInfo = mongoose.model('Experience_info', activitySchema)
+const projInfo = mongoose.model('Projects_info', projectSchema)
+const techSkillInfo = mongoose.model('Technical_Skills_info', techSkillSchema)
+const activityInfo = mongoose.model('Activities', activitySchema)
 
-module.exports = {personalInfo, educationInfo, expInfo, projInfo, techSkillInfo, activityInfo};
+module.exports = {personalInfoDb, educationInfo, expInfo, projInfo, techSkillInfo, activityInfo};

@@ -1,19 +1,51 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const {addPersonalDetails, 
+    addEdDetails, 
+    addProjectDetails, 
+    addTechSkill, 
+    addExp, 
+    addActivity} = require('./controller/Details');
+const path = require('path');
 const connectDb = require('./database/connect');
 const app = express();
 require('dotenv').config();
 
-const port = process.env.PORT||5500;
+const port = process.env.PORT||3000;
 
 app.use(express.json());
+app.use(express.static('./public'));
 
-app.post('/post-resume', (req,res)=>{
+app.get('/', (req,res)=>{
+        res.status(200).sendFile(path.join(__dirname, '/public','/enterdetails.html'));
+        console.log('Loaded Home page successfully');
+})
+
+app.post('/post-resume', async (req,res)=>{
     const resumeObj = req.body;
-    if(resumeObj){
-        return res.status(200).send('Received Resume data successfully');
-    }
-    return res.status(404).send('Resume obj not received');
+    try {
+        const person = await addPersonalDetails(req, res);
+        const education = await addEdDetails(req, res);
+        const projects = await addProjectDetails(req, res);
+        const techSkills = await addTechSkill(req, res);
+        const experience = await addExp(req, res);
+        const userActivity = await addActivity(req, res);
+
+    // If all controller functions succeeded, send a success response
+        res.status(201).json({
+            msg: 'Resume data processed successfully',
+            person: person,
+            education: education,
+            projects: projects,
+            techSkills: techSkills,
+            experience: experience,
+            userActivity: userActivity,
+        });
+      } catch (error) {
+        // Error already handled in the controller functions, no need to send another error here
+        // the controller functions set the status code and send the error.
+        // If you'd like to do additional error handling for the entire process, you can do it here.
+        console.log('Error: ', error.message);
+      }
 })
 
 const start = async ()=>{

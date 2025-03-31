@@ -1,6 +1,6 @@
 
 class resume{
-    personalInfo = [];
+    personalInfo = {};
     education = [];
     projects = [];
     exp = [];
@@ -8,7 +8,7 @@ class resume{
     extraSkills = [];
 
     addContact(personalInfoValues){
-        this.personalInfo.push(personalInfoValues);
+        this.personalInfo = personalInfoValues;
     }
     addEducation(edValues){
         this.education.push(edValues);
