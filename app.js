@@ -4,9 +4,17 @@ const connectDb = require('./database/connect');
 const app = express();
 require('dotenv').config();
 
-const port = process.env.PORT||3000;
+const port = process.env.PORT||5500;
 
 app.use(express.json());
+
+app.post('/post-resume', (req,res)=>{
+    const resumeObj = req.body;
+    if(resumeObj){
+        return res.status(200).send('Received Resume data successfully');
+    }
+    return res.status(404).send('Resume obj not received');
+})
 
 const start = async ()=>{
     try{
