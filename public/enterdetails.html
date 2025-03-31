@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="enterdetails.css">
+    <title>Resume-Builder</title>
+</head>
+<body>
+    <h1>RESUME BUILDER</h1>
+    <form class="applicantDetails" method="post">
+    <div class="content">
+        <div class="contactinfo">
+            <h3>Personal Details</h3>
+            <div class="contact">
+            <input type="text" id="applicantname" placeholder="Enter your name">
+            <input type="text" id="contactno" placeholder="Mobile-no">
+            <input type="email" id="email" placeholder="Email-ID">
+            <input type="text" id="linkedinlink" placeholder="LinkedIn-profile">
+            <input type="text" id="githublink" placeholder="GitHub-profile">
+            <label for="confirmPersonalInfo">Confirm</label><input type="checkbox" id="confirmPersonalInfo">
+            </div>
+        </div>
+        <div class="educationinfo">
+            <h3>Education Details</h3>
+            <div class="education">
+            <input type="text" placeholder="Enter institute name" id="instituteName">
+            <input type="text" placeholder="Degree/Diploma/HSC/SSC/Masters" id="degreeName">
+            <label for="fromDate">From: </label><input type="date" id="fromDate">
+            <label for="toDate">To: </label><input type="date" id="toDate">
+            <input type="textarea" placeholder="Enter courses learned/ Specializations" id="courseDetails">
+            <input type="button" value="+" id="addEducation">
+            <label for="confirmEd">Confirm</label><input type="checkbox" id="confirmEd">
+            </div>
+        </div>
+        <div class="experienceinfo">
+            <h3>Work Experience</h3>
+            <div class="experience">
+            <input type="text" placeholder="Enter organization name" id="orgName">
+            <input type="text" placeholder="Designation" id="designation">
+            <label for="fromDate">From: </label><input type="date" id="started">
+            <label for="toDate">To: </label><input type="date" id="ended">
+            <input type="textarea" placeholder="Projects worked upon" id="orgProjDesc">
+            <input type="button" value="+" id="addExperience">
+            <label for="confirmExp">Confirm</label><input type="checkbox" id="confirmExp">
+            </div>
+        </div>
+        <div class="projectsinfo">
+            <h3>Projects</h3>
+            <div class="projects">
+            <input type="text" placeholder="Enter Project title" id="projectTitle">
+            <input type="text" placeholder="Resources used" id="resourcesUsed">
+            <input type="textarea" placeholder="Details of the project" id="projectDesc">
+            <input type="button" value="+" id="addProjects">
+            <label for="confirmProj">Confirm</label><input type="checkbox" id="confirmProj">
+            </div>
+        </div>
+        <div class="technicalskillsinfo">
+            <h3>Technical Skills</h3>
+            <div class="technicalskills">
+            <input type="text" placeholder="Enter skill" id="skillName">
+            <input type="text" placeholder="Proficiency: beginner/intermediate/advanced" id="proficiency">
+            <input type="button" value="+" id="addTechSkills">
+            <label for="confirmTechSkill">Confirm</label><input type="checkbox" id="confirmTechSkill">
+            </div>
+        </div>
+        <div class="extracurricularinfo">
+            <h3>Extra-curricular Activities</h3>
+            <div class="extracurricular">
+            <input type="textarea" placeholder="Enter extracurricular activities" id="activity">
+            <input type="button" value="+" id="addActivity">
+            <label for="confirmextraAct">Confirm</label><input type="checkbox" id="confirmextraAct">
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Submit details" id="submit">
+    </form>
+    <script type="module" src="sendDetails.js"></script>
+</body>
+</html>

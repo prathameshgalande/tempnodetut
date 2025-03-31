@@ -1,0 +1,33 @@
+body{
+    font-family: Arial;
+    font-size: 1.1em;
+    height: 100vh;
+    margin: 20px;
+}
+.resume{
+    display: flex;
+    flex-direction: column;
+}
+#candidateName{
+    text-align: center;
+    background-color: lightgrey;
+}
+.profile{
+    background-color: lightgrey;
+    box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.39);
+}
+#contactTxt, #contactTxt span{
+    text-align: center;
+    padding: 10px;
+}
+.contents{
+    margin: 40px;
+}
+
+.education, .projects, .techskills, .extracurricular{
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    font-family: Arial;
+}
+
