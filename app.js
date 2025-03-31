@@ -13,7 +13,7 @@ require('dotenv').config();
 const port = process.env.PORT||3000;
 
 app.use(express.json());
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res)=>{
         res.status(200).sendFile(path.join(__dirname, '/public','/enterdetails.html'));
@@ -31,15 +31,8 @@ app.post('/post-resume', async (req,res)=>{
         const userActivity = await addActivity(req, res);
 
     // If all controller functions succeeded, send a success response
-        res.status(201).json({
-            msg: 'Resume data processed successfully',
-            person: person,
-            education: education,
-            projects: projects,
-            techSkills: techSkills,
-            experience: experience,
-            userActivity: userActivity,
-        });
+        res.sendFile(path.join(__dirname, '/public', '/resumeoutline.html'));
+        console.log('Resume page loaded successfully');
       } catch (error) {
         // Error already handled in the controller functions, no need to send another error here
         // the controller functions set the status code and send the error.
